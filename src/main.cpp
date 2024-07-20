@@ -111,7 +111,7 @@ static void signal_handler(int sig_num) {
     exploit->ppp_byebye();
     exit(sig_num);
 }
-
+ bool web_page = false;
 int main(int argc, char *argv[]) {
     using namespace clipp;
     std::cout << "[+] PPPwn++ - PlayStation 4 PPPoE RCE by theflow" << std::endl;
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
     int buffer_size = 0;
     bool retry = false;
     bool no_wait_padi = false;
-    bool web_page = false;
+   // bool web_page = false;
     bool real_sleep = false;
 
     auto cli = (
@@ -188,12 +188,12 @@ int main(int argc, char *argv[]) {
     exploit->setAutoRetry(retry);
     exploit->setRealSleep(real_sleep);
 
-    if (web_page) {
-        web = std::make_shared<WebPage>(exploit);
-        web->setUrl(web_url);
-        web->run();
-        return 0;
-    }
+    // if (web_page) {
+    //     web = std::make_shared<WebPage>(exploit);
+    //     web->setUrl(web_url);
+    //     web->run();
+    //     return 0;
+    // }
 
     return exploit->run();
 }
